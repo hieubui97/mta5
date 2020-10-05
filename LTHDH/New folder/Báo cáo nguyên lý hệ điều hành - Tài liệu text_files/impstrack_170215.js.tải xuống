@@ -1,0 +1,23 @@
+		(function (w, d, s) {
+	setTimeout(function() {
+		var ureka = document.getElementsByClassName("click_referer");
+		var linkP =ureka[0]['href']; 
+		var urk_source = document.getElementsByTagName("iframe");
+		var cookie_name = '';  
+		if( cookie_name  !='' || cookie_name !=null ){
+            let dataForm = new FormData();
+            
+            dataForm.append("webs", linkP );
+			dataForm.append("device_pixel_ratio", window.devicePixelRatio );
+            dataForm.append("cookie", cookie_name);
+            dataForm.append("wh", screen.width + ';' + screen.height);
+            dataForm.append("urk_src", urk_source[0].src );
+
+            let request = typeof XMLHttpRequest != 'undefined' ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            request.open("POST","https://optimize.urekamedia.com/getInfo");
+            request.send(dataForm);
+            return true;
+        }
+	}, 1000);  
+})(window, document, 'script');
+
